@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<title>Toggle Image</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+		<style type="text/css">
+			#toggleThisImage	{
+				transition: 1s all ease;
+			}
+		</style>
+		<script src="js/imageToggle.js" charset="utf-8"></script>
+	</head>
+	<body class="bg-dark">
+		<div class="container-fluid bg-light mx-auto" style="width: 35%; border-radius: 10px;">
+			<img class="img img-fluid" id="toggleThisImage" src="images/github.png" alt="No image found!" style="transition: 1s all ease;">
+			<button class="btn btn-success" onclick="imageToggle('toggleThisImage');" style="width: 100%; padding-top: 10px; padding-bottom: 10px;">Toggle</button>
+		</div>
+		<script type="text/javascript">
+			showImage = true;
+			width_1 = document.getElementById('toggleThisImage').width + "px";
+		</script>
+	</body>
+</html>
