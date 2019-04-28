@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<title>Remove the entered option from dropdown</title>
+		<script src="js/removeOption.js" charset="utf-8"></script>
+	</head>
+	<body>
+		<select id="removeFromThis" multiple>
+			<option value="a">a</option>
+			<option value="b">b</option>
+			<option value="c">c</option>
+			<option value="d">d</option>
+			<option value="e">e</option>
+			<option value="f">f</option>
+			<option value="g">g</option>
+			<option value="h">h</option>
+		</select>
+		<input type="text" id="removeThisOption">
+		<button onclick="removeDropdownOption('removeFromThis', 'removeThisOption');">Remove this!</button>
+	</body>
+</html>
