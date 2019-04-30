@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<title>Alert the selected Checkbox</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	</head>
+	<body>
+		<input type="checkbox" name="cb" value="Check1">1
+		<input type="checkbox" name="cb" value="Check2">2
+		<input type="checkbox" name="cb" value="Check3">3
+		<input type="checkbox" name="cb" value="Check4">4<br>
+
+		<script type="text/javascript">
+			$("[name='cb']").each(
+				(index, element)=>	{
+					if($("[name='cb']")[index].is(":checked"))	{
+						alert($("[name='cb']")[index].value());
+					}
+				}
+			);
+		</script>
+	</body>
+</html>

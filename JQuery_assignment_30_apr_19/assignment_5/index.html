@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<title>Delay animation</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	</head>
+	<body>
+		<div class="id1">
+			A
+		</div>
+		<div class="id2">
+			B
+		</div>
+		<div class="id3">
+			C
+		</div>
+		<button id="clickIt">Delay Animate</button>
+		<script type="text/javascript">
+			$("#clickIt").click(
+				()=>	{
+					$(".id1").slideUp(1000).delay(1000).fadeIn(1000);
+					$(".id2").slideUp(1000).delay(1000).fadeIn(1000);
+					$(".id3").slideUp(1000).delay(1000).fadeIn(1000);
+				}
+			);
+		</script>
+	</body>
+</html>

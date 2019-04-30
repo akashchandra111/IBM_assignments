@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<title>Input is prohibited on textarea</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	</head>
+	<body>
+		<textarea name="name" rows="8" cols="80"></textarea>
+		<script type="text/javascript">
+			$("textarea").keyup(
+				()=>	{
+					alert("Input is prohibited!!");
+					$("textarea").val("");
+				}
+			);
+		</script>
+	</body>
+</html>

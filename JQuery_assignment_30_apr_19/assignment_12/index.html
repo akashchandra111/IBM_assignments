@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<title>Title Case text on mouse move out</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+		<style type="text/css">
+			.capitalize	{
+				text-transform: capitalize;
+			}
+		</style>
+	</head>
+	<body>
+		<textarea name="contentToCapitalize" rows="3" cols="60"></textarea>
+		<script type="text/javascript">
+			$("[name='contentToCapitalize']").mouseout(
+				()=>	{
+					$("[name='contentToCapitalize']").addClass("capitalize");
+				}
+			);
+		</script>
+	</body>
+</html>

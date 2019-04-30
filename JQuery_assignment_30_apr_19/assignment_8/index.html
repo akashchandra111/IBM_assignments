@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<title>Highlight disabled elements</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	</head>
+	<body>
+		<input type="text" name="" value="" disabled>
+		<input type="text" name="" value="" >
+		<input type="text" name="" value="" disabled>
+
+		<script type="text/javascript">
+			$("[disabled]").css("background-color", "yellow");
+		</script>
+	</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<title>Count option in combo</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	</head>
+	<body>
+		<select class="" name="">
+			<option value="">A</option>
+			<option value="">B</option>
+			<option value="">C</option>
+			<option value="">D</option>
+			<option value="">E</option>
+		</select>
+		<div class="printHere">
+
+		</div>
+		<button id="clickIt">Count</button>
+		<script type="text/javascript">
+			$("#clickIt").click(
+				()=>	{
+					$(".printHere")[0].innerHTML = $("select option").length;
+				}
+			);
+
+		</script>
+	</body>
+</html>
