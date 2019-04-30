@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+			<title>Make second word in div bold</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js" charset="utf-8"></script>
+	</head>
+	<body>
+		<div>Hello this our first line</div>
+		<div>Hi this line is second</div>
+		<div>is that the third line?</div>
+		<button type="button">Make bold</button>
+
+		<script type="text/javascript">
+			$("[type='button']").click(
+				()=>	{
+					counter = 0;
+					while($("div").length != counter)	{
+						replaceIt = $("div")[counter].innerText.split(" ")[1];
+						$("div")[counter].innerHTML = $("div")[counter].innerHTML.replace(replaceIt, "<b>" + replaceIt + "</b>");
+						++counter;
+					}
+				}
+			);
+		</script>
+	</body>
+</html>

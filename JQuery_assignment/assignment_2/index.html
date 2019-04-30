@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+			<title>Append on click of a button</title>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js" charset="utf-8"></script>
+	</head>
+	<body>
+		<p id="paraSampleText">This is a paragraph....</p>
+		<button type="button">Append</button>
+
+		<script type="text/javascript">
+			$("[type='button']").click(
+				function()	{
+					$("#paraSampleText").append("<br>This is appended content in the paragraph...");
+				}
+			);
+		</script>
+	</body>
+</html>

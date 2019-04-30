@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<title>Remove CSS from div</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js" charset="utf-8"></script>
+		<style type="text/css">
+			.container	{
+				background-color: blue;
+				width: 100%;
+				height: 20%;
+				border-radius: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			Hello!!
+		</div>
+		<button type="button">Remove CSS</button>
+
+		<script type="text/javascript">
+			$("[type='button']").click(
+				()=>	{
+					$(".container").removeClass();
+				}
+			);
+		</script>
+	</body>
+</html>
