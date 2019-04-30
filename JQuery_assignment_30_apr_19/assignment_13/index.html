@@ -6,17 +6,17 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 	</head>
 	<body>
-		<input type="checkbox" name="cb" value="Check1">1
-		<input type="checkbox" name="cb" value="Check2">2
-		<input type="checkbox" name="cb" value="Check3">3
-		<input type="checkbox" name="cb" value="Check4">4<br>
-
+		<select multiple>
+			<option value="A">A</option>
+			<option value="B">B</option>
+			<option value="C">C</option>
+			<option value="D">D</option>
+			<option value="E">E</option>
+		</select>
 		<script type="text/javascript">
-			$("[name='cb']").each(
-				(index, element)=>	{
-					if($("[name='cb']")[index].is(":checked"))	{
-						alert($("[name='cb']")[index].value());
-					}
+			$("select option").click(
+				()=>	{
+					alert("Selected: " + $("select option:selected")[0].value);
 				}
 			);
 		</script>
