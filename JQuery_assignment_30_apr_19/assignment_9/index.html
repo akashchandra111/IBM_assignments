@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<title>Get value of first column in a table</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	</head>
+	<body>
+		<table>
+			<tr>
+				<th>Hello</th><th>This</th><th>is</th>
+			</tr>
+			<tr>
+				<td>1</td><td>2</td><td>3</td>
+			</tr>
+			<tr>
+				<td>one</td><td>two</td><td>three</td>
+			</tr>
+		</table>
+
+		<p id="printHere"></p>
+
+		</table>
+		<script type="text/javascript">
+			$("tr").each(
+				(index, element)=>	{
+					if ($("tr")[index].firstElementChild.tagName == "TH");
+					else {
+						$("#printHere")[0].innerHTML += $("tr")[index].firstElementChild.innerHTML + "<br>";
+					}
+				}
+			);
+		</script>
+	</body>
+</html>

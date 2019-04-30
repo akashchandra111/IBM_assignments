@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<title>Remove all spans from HTML DOM</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	</head>
+	<body>
+			<span>Span 1</span>
+			<span><span>Span 2</span></span>
+			<span id="spanWithID">Span 3</span>
+			<span class="spanWithClass">Span 4</span>
+
+			<button id="deleteSpan">Delete Spans</button>
+
+			<script type="text/javascript">
+				//This function will remove all the spans on the click of a button
+				$("#deleteSpan").click(
+					()=>	{
+						$("span").remove();
+					}
+				);
+			</script>
+	</body>
+</html>

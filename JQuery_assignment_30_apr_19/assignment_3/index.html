@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<title>Move text from one div to another</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	</head>
+	<body>
+		<div id="firstDiv" style="background-color: yellow; width:100%; height: 30%;">
+			This content is in first div
+		</div>
+		<div id="secondDiv" style="background-color: cyan; width:100%; height: 30%;">
+			.
+		</div>
+		<button id="changeContent">Change div</button>
+
+		<script type="text/javascript">
+			$("#changeContent").click(
+				()=>	{
+					textInDiv = $("#firstDiv")[0].innerHTML;
+					$("#firstDiv")[0].innerHTML = ".";
+					$("#secondDiv")[0].innerHTML = textInDiv;
+				}
+			);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<title>Show remaining charactersp</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js" charset="utf-8"></script>
+		<script type="text/javascript">
+			limitText = 20;
+		</script>
+	</head>
+	<body>
+		<textarea id="handleTextArea" name="name" rows="2" cols="10" maxlength="20"></textarea>
+		<div id="showMessage">
+
+		</div>
+		<script type="text/javascript">
+			//Function to check limit in input text area
+			$("#handleTextArea").keyup(
+					()=>	{
+						enteredText = $("#handleTextArea").val().length;
+						if(enteredText == limitText)	{
+							$("#showMessage")[0].innerHTML = enteredText + "/" + limitText + "  Character limit reached!";
+						}
+						else {
+							$("#showMessage")[0].innerHTML = enteredText + "/" + limitText;
+						}
+					}
+			);
+		</script>
+	</body>
+</html>
