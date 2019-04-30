@@ -12,14 +12,27 @@
 		<button type="button">Make bold</button>
 
 		<script type="text/javascript">
+
+//			$("[type='button']").click(
+//				()=>	{
+//					counter = 0;
+//					while($("div").length != counter)	{
+//						replaceIt = $("div")[counter].innerText.split(" ")[1];
+//						$("div")[counter].innerHTML = $("div")[counter].innerHTML.replace(replaceIt, "<b>" + replaceIt + "</b>");
+//						++counter;
+//					}
+//				}
+//			);
+
+			//Newly implemented logic totally based on JQuery
 			$("[type='button']").click(
 				()=>	{
-					counter = 0;
-					while($("div").length != counter)	{
-						replaceIt = $("div")[counter].innerText.split(" ")[1];
-						$("div")[counter].innerHTML = $("div")[counter].innerHTML.replace(replaceIt, "<b>" + replaceIt + "</b>");
-						++counter;
-					}
+					$("div").each(
+						function (index, element)	{
+							replaceIt = $(this).text().split(" ")[1];
+							$(this)[0].innerHTML = $(this)[0].innerHTML.replace(replaceIt, "<b>" + replaceIt + "</b>");
+						}
+					);
 				}
 			);
 		</script>
