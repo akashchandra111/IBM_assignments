@@ -6,17 +6,38 @@ var runtimeVal = readline.createInterface({
     output: process.stdout
 });
 function passOrNot(num1, num2, num3) {
-    if (num1 >= 40) {
-        if (num2 >= 40) {
-            if (num3 >= 40) {
-                if (num1 + num2 + num3 >= 125) {
-                    console.log("Passed");
-                }
-            }
-        }
+    // if(num1 >= 40)	{
+    // 	if(num2 >= 40)	{
+    // 		if(num3 >= 40)	{
+    // 			if(num1 + num2 + num3 >= 125)	{
+    // 				console.log("Passed");
+    // 			}
+    // 		}
+    // 	}
+    // }
+    // else	{
+    // 	console.log("Failed");
+    // }
+    var result = true;
+    var totalSum = num1 + num2 + num3;
+    if (totalSum < 125) {
+        result = false;
+    }
+    if (num1 < 40) {
+        result = false;
+    }
+    if (num2 < 40) {
+        result = false;
+    }
+    if (num3 < 40) {
+        result = false;
+    }
+    //Test for result
+    if (result == false) {
+        console.log("Failed! :(");
     }
     else {
-        console.log("Failed");
+        console.log("Passed! :)");
     }
 }
 runtimeVal.question("Enter all 3 numbers with spaces: ", function (answer) {

@@ -6,17 +6,39 @@ let runtimeVal = readline.createInterface({
 });
 
 function passOrNot(num1?: number, num2?: number, num3?: number)	{
-	if(num1 >= 40)	{
-		if(num2 >= 40)	{
-			if(num3 >= 40)	{
-				if(num1 + num2 + num3 >= 125)	{
-					console.log("Passed");
-				}
-			}
-		}
+	// if(num1 >= 40)	{
+	// 	if(num2 >= 40)	{
+	// 		if(num3 >= 40)	{
+	// 			if(num1 + num2 + num3 >= 125)	{
+	// 				console.log("Passed");
+	// 			}
+	// 		}
+	// 	}
+	// }
+	// else	{
+	// 	console.log("Failed");
+	// }
+	let result: boolean = true;
+	let totalSum: number = num1 + num2 + num3;
+	if(totalSum < 125)	{
+		result = false;
+	}
+	if (num1 < 40)	{
+		result = false;
+	}
+	if (num2 < 40)	{
+		result = false;
+	}
+	if (num3 < 40)	{
+		result = false;
+	}
+
+	//Test for result
+	if(result == false)	{
+		console.log("Failed! :(");
 	}
 	else	{
-		console.log("Failed");
+		console.log("Passed! :)");
 	}
 }
 
