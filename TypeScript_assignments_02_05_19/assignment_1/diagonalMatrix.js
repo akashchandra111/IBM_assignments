@@ -8,3 +8,4 @@ function printDiagonal(matrix) {
         }
     }
 }
+printDiagonal(matrix);
