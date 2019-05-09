@@ -18,25 +18,13 @@ class CheckAnagram	{
 
 	public static boolean checkForAnagram(String str1, String str2)	{
 		// Create an array for distinct alphabet
-		boolean hasSkipped;
-		for(int j=0; j<str2.length(); ++j)	{
-			hasSkipped = false;
-			for(int i=0; i<str1.length(); ++i)	{
-				System.out.println("str1: " + str1.charAt(j) + " str2: " + str2.charAt(i));
-				if (str2.charAt(i) == ' ') continue;
-				else if(str1.charAt(i) == str2.charAt(j))	{
-					hasSkipped = true;
-					continue;
-				}
+		int anagramSize = str2.length();
+		for(int i=0; i<str2.length(); ++i)	{
+			for(int j=0; j<str1.length(); ++j)	{
+				if(str1.charAt(j) == str2.charAt(i))	--anagramSize;
+				if(anagramSize == 0)	return true;
 			}
-
-			if(str2.charAt(j) == ' ')	continue;
-
-			if(hasSkipped = true)	{
-				continue;
-			}
-			else return false;
 		}
-		return true;
+		return false;
 	}
 }

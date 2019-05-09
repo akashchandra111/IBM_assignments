@@ -17,7 +17,7 @@ class CheckCharSequence	{
 	}
 
 	public static boolean checkForSequence(String stringToCompare, String withString)	{
-		System.out.println("stringToCompare: " + stringToCompare.length() + " withString: " + withString.length());
+		//System.out.println("stringToCompare: " + stringToCompare.length() + " withString: " + withString.length());
 		for (int i=0; i<stringToCompare.length(); ++i)	{
 			for (int j=0; j<withString.length(); ++j)	{
 				if(stringToCompare.charAt(i) == withString.charAt(j))	{

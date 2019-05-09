@@ -1,7 +1,7 @@
 class CommandlineFloatAdd	{
 	public static void main(String... args)	{
 		if(args.length < 1)	{
-			System.out.println("Usage: java CommandlineAdd arg1 [args...]");
+			System.out.println("Usage: java CommandlineFloatAdd arg1 [args...]");
 			return;
 		}
 		int sum=0;
