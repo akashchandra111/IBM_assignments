@@ -15,12 +15,11 @@ class SecondFreqChar	{
 		curChar = charArray[0];
 
 		for(int i=0; i<charArray.length; ++i)	{
-			if(curChar == charArray[i])	{
+			if(curChar == (charArray[i]))	{
 				++curCharCount;
 				System.out.println("Same char encountered!");
 			}
 			else	{
-				curCharCount = 0;
 				System.out.println("Different character encountered!");
 
 				if(curCharCount > mostFreqCharCount)	{
@@ -33,10 +32,12 @@ class SecondFreqChar	{
 					System.out.println("New most occured character found!");
 				}
 				curChar = charArray[i];
+				curCharCount = 0;
 			}
 			System.out.println("mfc: " + mostFreqChar + " smfc: " + secondMostFreqChar + " cc: " + curChar);
 		}
 
-		System.out.println("Second Frequent character: " + secondMostFreqChar + " occured: " + secondMostFreqCharCount + " times");
+		System.out.println("Second Frequent character: '" + secondMostFreqChar + "' occured: " + secondMostFreqCharCount + " times");
 	}
+
 }

@@ -2,7 +2,7 @@ import java.lang.StringBuffer;
 
 class SplitAndSubString	{
 	private String dupString;
-	public SplitString(String dupString)	{
+	public SplitAndSubString(String dupString)	{
 		this.dupString = dupString;
 	}
 
@@ -74,7 +74,7 @@ class SplitAndSubString	{
 		SplitAndSubString splitStr = new SplitAndSubString("hello jello tell him to not kill");
 		System.out.println("Substring 1, 5: " + splitStr.subString(1, 5));
 		// splitStr.mySplit(" ");
-		for(String split: splitStr.mySplit("kill"))	{
+		for(String split: splitStr.mySplit("e"))	{
 			System.out.println(split);
 		}
 	}
