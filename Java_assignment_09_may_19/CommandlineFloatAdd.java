@@ -11,6 +11,10 @@ class CommandlineFloatAdd	{
 			sum += (int)tempFloat;
 			decimalSum += tempFloat - (int)tempFloat;
 		}
-		System.out.printf("Sum is: (int)%d (float)%.2f", sum, decimalSum);
+
+		if((int)decimalSum >= 1)	{
+			decimalSum = decimalSum - (int)decimalSum;
+		}
+		System.out.printf("Sum is: (float)%.2f", sum+decimalSum);
 	}
 }
