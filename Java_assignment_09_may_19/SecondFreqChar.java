@@ -9,35 +9,60 @@ class SecondFreqChar	{
 		char[] charArray = checkInThis.toCharArray();
 		Arrays.sort(charArray);
 
-		char mostFreqChar=' ', secondMostFreqChar=' ', curChar=' ';
-		int mostFreqCharCount=0, secondMostFreqCharCount=0, curCharCount=0;
-
-		curChar = charArray[0];
-
+		//Find distinct characters
+		int distinctChars = 0;
 		for(int i=0; i<charArray.length; ++i)	{
-			if(curChar == (charArray[i]))	{
-				++curCharCount;
-				System.out.println("Same char encountered!");
-			}
-			else	{
-				System.out.println("Different character encountered!");
-
-				if(curCharCount > mostFreqCharCount)	{
-					secondMostFreqCharCount = mostFreqCharCount;
-					mostFreqCharCount = curCharCount;
-
-					secondMostFreqChar = mostFreqChar;
-					mostFreqChar = curChar;
-
-					System.out.println("New most occured character found!");
-				}
-				curChar = charArray[i];
-				curCharCount = 0;
-			}
-			System.out.println("mfc: " + mostFreqChar + " smfc: " + secondMostFreqChar + " cc: " + curChar);
+			if(i+1<charArray.length && charArray[i]==charArray[i+1])	continue;
+			else ++distinctChars;
 		}
 
-		System.out.println("Second Frequent character: '" + secondMostFreqChar + "' occured: " + secondMostFreqCharCount + " times");
+		//for(char c: charArray)	System.out.print(c);
+		//System.out.println();
+		//System.out.println(distinctChars);
+
+		//Create array to contain count of distinct characters
+		byte[] distinctCharsCount = new byte[distinctChars];
+
+		//Count the occurance of each distinct characters
+		for(int i=0, j=0; i<charArray.length; ++i)	{
+			if(i+1<charArray.length && charArray[i]==charArray[i+1])	++distinctCharsCount[j];
+			else {
+				++distinctCharsCount[j++];
+			}
+		}
+
+		//Check the counts
+		//for(byte b: distinctCharsCount)	System.out.print(b + " ");
+		//System.out.println();
+
+		//Find second most character count
+		int mostFreq=0, secondMostFreq=0;
+		for(int i=0; i<distinctCharsCount.length; ++i)	{
+			if(mostFreq < distinctCharsCount[i])	{
+				secondMostFreq = mostFreq;
+				mostFreq = distinctCharsCount[i];
+			}
+			else if(secondMostFreq < distinctCharsCount[i] && distinctCharsCount[i] < mostFreq)	{
+				secondMostFreq = distinctCharsCount[i];
+			}
+		}
+
+		//System.out.println("mostFreqCharCount: " + mostFreq);
+		//System.out.println("secondMostFreqCharCount: " + secondMostFreq);
+
+		//Print secondMostFreq characters
+		int tempCounter = 0;
+		for(int i=0; i<distinctCharsCount.length; ++i)	{
+			if(distinctCharsCount[i] != secondMostFreq)	{
+				tempCounter += distinctCharsCount[i];
+				//System.out.println("tempCounter: " + tempCounter);
+			}
+			else	{
+				break;
+			}
+		}
+
+		System.out.println("secondMostFreqChar: " + charArray[tempCounter]);
 	}
 
 }
