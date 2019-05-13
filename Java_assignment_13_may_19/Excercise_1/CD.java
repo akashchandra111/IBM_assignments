@@ -44,7 +44,7 @@ public class CD extends MediaItem	{
 
 	@Override
 	public String toString()	{
-		return super.toString() + ". artist: " + this.artist + " genre: " + this.genre;
+		return super.toString() + ". artist: " + this.artist + ", genre: " + this.genre;
 	}
 
 	@Override

@@ -54,7 +54,7 @@ public abstract class Item	{
 	//toString method
 	@Override
 	public String toString()	{
-		return this.title + " has uid: " + this.uid + "with " + this.copies + " sold";
+		return this.title + " has uid: " + this.uid + " with " + this.copies + " checked-out";
 	}
 
 	//print method

@@ -5,12 +5,12 @@ public class JournalPaper extends WrittenItem	{
 	private int yearPublished;
 
 	//Constructors
-	JournalPaper()	{
+	public JournalPaper()	{
 		super();
 		this.yearPublished = 2000;
 	}
 
-	JournalPaper(long uid, String title, int copies, String author, int yearPublished)	{
+	public JournalPaper(long uid, String title, int copies, String author, int yearPublished)	{
 		super(uid, title, copies, author);
 		this.yearPublished = yearPublished;
 	}

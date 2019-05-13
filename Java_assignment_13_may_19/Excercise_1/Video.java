@@ -55,7 +55,7 @@ public class Video extends MediaItem	{
 
 	@Override
 	public String toString()	{
-		return super.toString() + ". director: " + this.director + " genre: " + this.genre + " release year: " + this.yearReleased;
+		return super.toString() + ". director: " + this.director + ", genre: " + this.genre + ", release year: " + this.yearReleased;
 	}
 
 	@Override
