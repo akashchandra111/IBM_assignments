@@ -4,14 +4,19 @@ import java.util.ArrayList;
 import com.dev.Laptop;
 import com.dev.exception.LaptopException;
 
+//Laptop Holder class which contains laptop objects in it and manages them
 public class LaptopsHolder	{
+	//ArrayList to hold all the laptop details entered by user
 	private ArrayList laptopCollection;
 
+	//Default Constructor
 	public LaptopsHolder()	{
+		//Initializing ArrayList and adding new Laptop object for testing purpose
 		this.laptopCollection = new ArrayList();
 		this.laptopCollection.add(new Laptop());
 	}
 
+	//Method to add laptop to ArrayList; also checks for exception if same uid is present
 	public void addLaptop(Integer id, Integer hddSize, Integer ramSize, Integer graphicsSize, String brandName)	{
 		Laptop checkLaptop = null;
 		for(Object obj: this.laptopCollection)	{
@@ -35,6 +40,7 @@ public class LaptopsHolder	{
 		}
 	}
 
+	//Method to remove laptop to ArrayList and checks if the uid is not present
 	public void removeLaptop(Integer id)	{
 		Laptop laptopToRemove = null;
 		for(Object obj: this.laptopCollection)	{
@@ -56,6 +62,7 @@ public class LaptopsHolder	{
 		}
 	}
 
+	//Method to update a current laptop object if present (uid exists) with proper change that can be done to any attribute of laptop
 	public void updateLaptop(Integer id, String whatToUpdate, String updatedValue)	{
 		Laptop laptopToUpdate = null;
 		for(Object obj: this.laptopCollection)	{
@@ -95,6 +102,7 @@ public class LaptopsHolder	{
 		}
 	}
 
+	//Method to search laptop on basis of uid and print it's information
 	public void getLaptop(Integer id)	{
 		Laptop printThisLaptopInfo = null;
 		for(Object obj: this.laptopCollection)	{
@@ -113,6 +121,7 @@ public class LaptopsHolder	{
 		}
 	}
 
+	//Method to see all the laptops present
 	public void viewAllLaptops()	{
 		try	{
 			if(this.laptopCollection.size() < 1)	throw new LaptopException("NO laptops are present in list!");

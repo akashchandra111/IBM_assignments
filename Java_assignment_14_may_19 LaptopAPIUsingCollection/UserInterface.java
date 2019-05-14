@@ -5,19 +5,25 @@ import com.enums.OperationEnum;
 
 public class UserInterface	{
 	public static void main(String... args)	{
+		//Calling the method questionUser to anonymous object (forever loop)
 		new UserInterface().questionUser();
 	}
 
 	public void questionUser()	{
+		//Made 2 scanner objects because intScanner was not taking string elements using method nexLine();
+		//That's why 2 scanner objects are created here
 		Scanner intScanner = new Scanner(System.in);
 		Scanner stringScanner = new Scanner(System.in);
 
+		//Initializing the holder class and inturn it initializes the ArrayList behind the scene
 		LaptopsHolder laptopHolder = new LaptopsHolder();
 
+		//flag which decides whether the loop will be run next time if true;
 		boolean flag = false;
 
 		System.out.println("Laptop Descriptor: ");
 
+		//Calling appropriate methods where required!
 		do {
 			System.out.println("Choose your option: \n[1->Add]\t[2->Update]\t[3->View]\t[4->View All]\t[5->Delete]\t[6->exit]\n");
 			Integer option = intScanner.nextInt();

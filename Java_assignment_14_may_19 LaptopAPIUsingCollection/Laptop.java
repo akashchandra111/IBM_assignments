@@ -4,6 +4,8 @@ public class Laptop	{
 	private Integer hddSize, ramSize, graphicsSize, id;
 	private String brandName;
 
+	//Constructors
+	//[default]
 	public Laptop()	{
 		this.id = 999;
 		this.hddSize = 0;
@@ -12,6 +14,7 @@ public class Laptop	{
 		this.brandName = "none";
 	}
 
+	//[parameterized]
 	public Laptop(int id, int hddSize, int ramSize, int graphicsSize, String brandName)	{
 		this.id = id;
 		this.hddSize = hddSize;
@@ -20,6 +23,7 @@ public class Laptop	{
 		this.brandName = brandName;
 	}
 
+	//Getters
 	public Integer getId()	{
 		return this.id;
 	}
@@ -40,6 +44,7 @@ public class Laptop	{
 		return this.brandName;
 	}
 
+	//Setters
 	public void setId(Integer id)	{
 		this.id = id;
 	}
@@ -60,6 +65,7 @@ public class Laptop	{
 		this.brandName = brandName;
 	}
 
+	//toString() method to print Laptop object in System.out.println();
 	public String toString()	{
 		return "This " + this.brandName + " laptop, id: " + this.id + " has " + this.ramSize + "gb of ram and " + this.hddSize +"gb of hard drive space with " + this.graphicsSize + "gb of graphics memory.";
 	}
