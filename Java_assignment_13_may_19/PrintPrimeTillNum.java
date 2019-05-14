@@ -6,7 +6,7 @@ class PrintPrimeTillNum	{
 		//if(PrintPrimeTillNum.checkPrime(checkTill))	System.out.print("Prime!");
 
 		int temp = 0;
-		while(checkTill > temp)	{
+		while(checkTill >= temp)	{
 			if (PrintPrimeTillNum.checkPrime(temp))	System.out.print((temp) + " ");
 			temp++;
 		}
@@ -14,14 +14,13 @@ class PrintPrimeTillNum	{
 	}
 
 	public static boolean checkPrime(int num)	{
-		int counter = 0;
+		//int counter = 0;
 		//System.out.println("Math.sqrt: " + (int)Math.sqrt(num));
-		for(int i=1; i<=num; ++i)	{
-			if(num%i == 0) counter++;
-		}
+		if(num==0 || num==1)	return false;
 
-		//System.out.println(counter);
-		if(counter == 2)	return true;
-		else	return false;
+		for(int i=2; i<=(int)Math.sqrt(num); ++i)	{
+			if(num%i == 0)	return false;
+		}
+		return true;
 	}
 }
