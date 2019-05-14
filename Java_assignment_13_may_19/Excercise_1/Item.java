@@ -47,7 +47,7 @@ public abstract class Item	{
 	//Abstract method
 	//equals method
 	public boolean equals(Item i)	{
-		if (this.uid == i.getUID() && this.title.equals(i.getTitle()) && this.copies == i.getCopies())	return true;
+		if (this.uid == i.uid && this.title.equals(i.getTitle()) && this.copies == i.getCopies())	return true;
 		else return false;
 	}
 

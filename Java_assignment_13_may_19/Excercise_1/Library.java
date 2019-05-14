@@ -15,6 +15,7 @@ public class Library	{
 		Video musicVideo = new Video();
 		musicVideo.setUID((long)212423);
 		musicVideo.setTitle("Nine Track Mind!");
+		musicVideo.setRunTime(15);
 		musicVideo.setCopies(20);
 		musicVideo.setDirector("Charlie Puth");
 		musicVideo.setGenre("English Pop");

@@ -6,11 +6,15 @@ class EmployeeCheck	{
 		int salary = Integer.parseInt(new java.util.Scanner(System.in).nextLine());
 
 		try	{
-			if (salary < 3000)	throw new EmployeeException("Employee salary is less than 3000");
-			else	System.out.println("Salary is fine!");
+			EmployeeCheck.checkException(salary);
 		}
 		catch(EmployeeException ese)	{
-			ese.printStackTrace();
+			System.out.println(ese);
 		}
+	}
+
+	public static void checkException(int salary) throws EmployeeException	{
+		if(salary < 3000)	throw new EmployeeException("Employee salary is less than 3000");
+		else	System.out.println("Salary is fine!");
 	}
 }
