@@ -21,6 +21,7 @@ public class Library	{
 		musicVideo.setYearReleased(2015);
 
 		Book harryPotter_1 = new Book((long)212688, "Harry Potter: 1", 61, "J.K. Rowling");
+		Book harryPotter_2 = new Book((long)212618, "Harry Potter: 2", 68, "J.K. Rowling");
 
 		JournalPaper theJournal = new JournalPaper();
 		theJournal.setUID((long)212890);
@@ -60,5 +61,14 @@ public class Library	{
 		System.out.println();
 		theJournal.print();
 		System.out.println();
+
+		//Checking for books
+		System.out.println("Comparing harryPotter_1 with harryPotter_2");
+		if(harryPotter_1.equals(harryPotter_2))	System.out.println("Both books are same!");
+		else	System.out.println("Both books are different");
+
+		System.out.println("Comparing harryPotter_1 with harryPotter_1");
+		if(harryPotter_1.equals(harryPotter_1))	System.out.println("Both books are same!");
+		else	System.out.println("Both books are different");
 	}
 }
