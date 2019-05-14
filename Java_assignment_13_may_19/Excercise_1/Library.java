@@ -30,6 +30,9 @@ public class Library	{
 		theJournal.setAuthor("Akash Chandra");
 		theJournal.setYearPublished(2050);
 
+		//Giving space for clear console input
+		System.out.println();
+
 		//Checking the implementation [addItem]
 		musicCD.addItem();
 		System.out.println();
@@ -53,6 +56,7 @@ public class Library	{
 		theJournal.checkOut(150);
 
 		//[print];
+		System.out.println();
 		musicCD.print();
 		System.out.println();
 		musicVideo.print();
@@ -62,7 +66,7 @@ public class Library	{
 		theJournal.print();
 		System.out.println();
 
-		//Checking for books
+		//Comparing for books
 		System.out.println("Comparing harryPotter_1 with harryPotter_2");
 		if(harryPotter_1.equals(harryPotter_2))	System.out.println("Both books are same!");
 		else	System.out.println("Both books are different");
