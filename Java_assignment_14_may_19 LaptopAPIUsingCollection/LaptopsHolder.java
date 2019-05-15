@@ -76,18 +76,23 @@ public class LaptopsHolder	{
 			if(laptopToUpdate != null)	{
 				if(whatToUpdate.equalsIgnoreCase("id"))	{
 					laptopToUpdate.setId(Integer.parseInt(updatedValue));
+					System.out.println("Laptop Id updated!");
 				}
 				else if(whatToUpdate.equalsIgnoreCase("ram"))	{
 					laptopToUpdate.setRamSize(Integer.parseInt(updatedValue));
+					System.out.println("Laptop ram updated!");
 				}
 				else if(whatToUpdate.equalsIgnoreCase("hdd"))	{
 					laptopToUpdate.setHddSize(Integer.parseInt(updatedValue));
+					System.out.println("Laptop hdd updated!");
 				}
 				else if(whatToUpdate.equalsIgnoreCase("graphics"))	{
 					laptopToUpdate.setGraphicsSize(Integer.parseInt(updatedValue));
+					System.out.println("Laptop graphics updated!");
 				}
 				else if(whatToUpdate.equalsIgnoreCase("brand"))	{
 					laptopToUpdate.setBrandName(updatedValue);
+					System.out.println("Laptop brand updated!");
 				}
 				else	{
 					System.out.println("Wrong criteria selected!");

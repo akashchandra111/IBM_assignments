@@ -1,4 +1,6 @@
 //import com.dev.Laptop;
+import java.util.InputMismatchException;
+
 import com.dev.devlist.LaptopsHolder;
 import java.util.Scanner;
 import com.enums.OperationEnum;
@@ -26,9 +28,10 @@ public class UserInterface	{
 		//Calling appropriate methods where required!
 		do {
 			System.out.println("Choose your option: \n[1->Add]\t[2->Update]\t[3->View]\t[4->View All]\t[5->Delete]\t[6->exit]\n");
-			Integer option = intScanner.nextInt();
+			Integer option = null;
+			try	{
+			option = Integer.parseInt(stringScanner.nextLine());
 			Integer id;
-
 			switch(option)	{
 				case 1:
 					System.out.print("Enter ID: ");
@@ -44,7 +47,7 @@ public class UserInterface	{
 					laptopHolder.addLaptop(id, hddSize, ramSize, graphicsSize, brandName);
 					flag = true;
 					break;
-				case 2:
+					case 2:
 					System.out.print("Enter ID: ");
 					id = intScanner.nextInt();
 					System.out.print("Select what to update: \n[1->id]\t[2->ram]\t[3->hdd]\t[4->graphics]\t[5->brand]\n");
@@ -54,19 +57,19 @@ public class UserInterface	{
 						case 1:
 							whatToUpdate = "id";
 							break;
-						case 2:
+							case 2:
 							whatToUpdate = "ram";
 							break;
-						case 3:
+							case 3:
 							whatToUpdate = "hdd";
 							break;
-						case 4:
+							case 4:
 							whatToUpdate = "graphics";
 							break;
-						case 5:
+							case 5:
 							whatToUpdate = "brand";
 							break;
-						default:
+							default:
 							whatToUpdate = "";
 					}
 					System.out.print("Enter value: ");
@@ -95,6 +98,22 @@ public class UserInterface	{
 					break;
 				default:
 					System.out.println("Wrong input passed, please try again!");
+				}
+			}
+			catch(InputMismatchException e)	{
+				System.out.println("Exception: " + e);
+			}
+			catch(Exception e)	{
+				System.out.println("Exception: " + e);
+			}
+			finally	{
+				if (!option.equals(6))	{
+					System.out.println("You might have entered wrong value at number field");
+					flag = true;
+				}
+				else	{
+					System.out.println("Exiting the program...");
+				}
 			}
 		}while(flag != false);
 	}
