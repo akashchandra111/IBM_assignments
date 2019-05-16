@@ -1,0 +1,10 @@
+[Generics]
+
+	(*)
+	functionName(Parameter<? extends Parent Class> param)	{
+
+	}
+	-> you can't perform any addition operation in it but modification works
+	-> there is no such thing as implements in '<? extends Parent Class>' (in place of extends) that means
+		you are promising that you are not adding anything
+	-> that means you can modify ParentClass, and extending child classes
