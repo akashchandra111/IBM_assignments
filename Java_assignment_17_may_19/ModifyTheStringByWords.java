@@ -6,7 +6,9 @@ class ModifyTheStringByWords	{
 		System.out.print("Enter string: ");
 		String str = new Scanner(System.in).nextLine();
 
-		for(String sortThis: str.split(" "))	{
+		String[] strArr = str.split(" ");
+		Arrays.sort(strArr);
+		for(String sortThis: strArr)	{
 			System.out.println(ModifyTheStringByWords.sortWord(ModifyTheStringByWords.capitalize(sortThis)));
 		}
 
