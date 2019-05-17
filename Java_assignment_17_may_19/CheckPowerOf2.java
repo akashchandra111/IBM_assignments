@@ -1,15 +1,16 @@
-class CheckPowerOfTwo	{
+class CheckPowerOf2	{
 	public static void main(String[] args) {
 		boolean errorOccured = false;
 		java.util.Scanner scan = new java.util.Scanner(System.in);
 
 		do	{
 			try	{
-				System.out.println("Enter number to check (if power of 2): ");
+				System.out.print("Enter number to check (if power of 2): ");
 				Integer num = Integer.parseInt(scan.nextLine());
 
-				if(CheckPowerOfTwo.checkPower(num))	System.out.println("Number is in power of 2");
+				if(CheckPowerOf2.checkPower(num))	System.out.println("Number is in power of 2");
 				else	System.out.println("Number is not in power of 2");
+
 				errorOccured = false;
 			}
 			catch(NumberFormatException nfe)	{
@@ -21,10 +22,16 @@ class CheckPowerOfTwo	{
 	}
 
 	public static boolean checkPower(int num)	{
-		while(num != 0)	{
-			if(num%2 != 0)	return false;
-			num /= 2;
+		while(num!=0 && num!=1)	{
+			if(num%2 != 0)	{
+				return false;
+			}
+			else	{
+				//System.out.println(num);
+				num /= 2;
+			}
 		}
-		return true;
+		if(num == 1)	return true;
+		else	return false;
 	}
 }
