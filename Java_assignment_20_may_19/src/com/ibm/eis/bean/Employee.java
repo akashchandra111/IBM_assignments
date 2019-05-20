@@ -59,9 +59,6 @@ public class Employee {
 	
 	@Override
 	public boolean equals(Object obj)	{
-		if (((Employee)obj).id == this.id)	{
-			return true;
-		}
-		else	return false;
+		return ((Employee)obj).id == this.id;
 	}
 }

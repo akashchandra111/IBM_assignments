@@ -58,8 +58,15 @@ public class UserInterface {
 			System.out.print("Enter Name: ");
 			String name = scan.nextLine();
 			
-			System.out.print("Enter ID: ");
-			int id = Integer.parseInt(scan.nextLine());
+			int id=0;
+			boolean notValidated = false;
+			do	{
+				System.out.print("Enter ID: ");
+				if (notValidated)	System.out.print("again!: ");
+				id = Integer.parseInt(scan.nextLine());
+			}
+			while(esc.validateUser(id) && (notValidated=true));
+			
 			
 			System.out.print("Enter Salary: ");
 			int salary = Integer.parseInt(scan.nextLine());
@@ -100,6 +107,9 @@ public class UserInterface {
 		catch(NumberFormatException nfe)	{
 			throw nfe;
 		}
+		finally	{
+			scan.close();
+		}
 	}
 	
 	public static void getInsuranceScheme() throws NumberFormatException	{
@@ -129,6 +139,9 @@ public class UserInterface {
 		}
 		catch(NumberFormatException nfe)	{
 			throw nfe;
+		}
+		finally	{
+			scan.close();
 		}
 	}
 }

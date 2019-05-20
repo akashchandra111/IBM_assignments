@@ -13,7 +13,6 @@ public class EmployeeServiceClass implements EmployeeService	{
 		
 		emp.setInsuranceScheme(EmployeeServiceClass.calculateInsuranceScheme(emp));
 		//hMap.put(emp.getId(), emp);
-		
 		dataAccessObject.addUser(emp.getId(), emp);
 	}
 	
@@ -70,4 +69,11 @@ public class EmployeeServiceClass implements EmployeeService	{
 	public String getInsuranceScheme(Employee emp) {
 		return emp.getInsuranceScheme();
 	}
+
+	@Override
+	public boolean validateUser(int id) {
+		return dataAccessObject.validateUser(id);
+	}
+	
+	
 }

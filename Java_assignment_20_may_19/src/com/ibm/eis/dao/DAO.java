@@ -20,4 +20,9 @@ public class DAO implements DAOInterface {
 		return hMap.get(id);
 	}
 
+	@Override
+	public boolean validateUser(int id)	{
+		if(hMap.containsKey(id))	return true;
+		else	return false;
+	}
 }
