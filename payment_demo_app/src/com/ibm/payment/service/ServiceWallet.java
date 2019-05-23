@@ -5,7 +5,23 @@ import com.ibm.payment.dao.DAOWallet;
 
 public class ServiceWallet implements ServiceWalletInterface {
 	
-	private static DAOWallet walletDbConnection = new DAOWallet();
+	private static DAOWallet walletDbConnection = null;
+	
+	static	{
+		walletDbConnection = new DAOWallet();
+		walletDbConnection.createConnection("bank_wallet", "root", "");
+	}
+	
+	public String generateUserAcctNum()	{
+		
+		long timeSeed = System.nanoTime();
+		double randomSeed = Math.random() * 1000;
+		long midSeed = (long) (timeSeed*randomSeed);
+		
+		String num = midSeed + "";
+		
+		return num.substring(0, 9);
+	}
 
 	@Override
 	public void createAccount(UserAccount account) {
@@ -41,6 +57,10 @@ public class ServiceWallet implements ServiceWalletInterface {
 	@Override
 	public String printTransaction(String fromDate, String toDate, UserAccount account, String type) {
 		return walletDbConnection.getLog(fromDate, toDate, account.getAcctNo(), type);
+	}
+	
+	public boolean checkUser(UserAccount account)	{
+		return walletDbConnection.isAccountPresent(account.getAcctNo());
 	}
 
 }

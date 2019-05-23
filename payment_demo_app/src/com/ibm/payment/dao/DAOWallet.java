@@ -245,6 +245,28 @@ public class DAOWallet implements DAOWalletInterface {
 		return null;
 	}
 	
+	public boolean isAccountPresent(String acctNo)	{
+		String queryAmountTable = "select acct_amount from amount_table where acct_no=?";
+		
+		try	{
+			DAOWallet.stmt = DAOWallet.dbConnection.prepareStatement(queryAmountTable);
+			DAOWallet.stmt.setString(1, acctNo);
+			
+			ResultSet rs = DAOWallet.stmt.executeQuery();
+			
+			boolean returnIt;
+			if (rs.next())	returnIt = true;
+			else	returnIt = false;
+			
+			rs.close();
+			return returnIt;
+		}
+		catch(SQLException e)	{
+			System.out.println("[getBalance]\n" + e.getMessage());
+		}
+		return false;
+	}
+	
 //	public String get(String tableName, String acctNo, String whatToGet)	{
 //		String queryToFetch = "select ? from ? where acct_no=?";
 //		
