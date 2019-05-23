@@ -35,10 +35,10 @@ public class DAOWallet implements DAOWalletInterface {
 	}
 
 	@Override
-	public void createAccountToDb(UserAccount account) {
-		Long acctNo = account.getAcctNo();
+	public void createAccountToDb(UserAccount account)	{
+		String acctNo = account.getAcctNo();
 		String acctHolderName = account.getAcctHolderName();
-		Long acctContactNo = account.getAcctHolderContact();
+		String acctContactNo = account.getAcctHolderContact();
 		String acctHolderAddr = account.getAcctHolderAddr();
 		
 		String queryUserTable = "insert into user_table values(?, ?, ?, ?)";
@@ -49,9 +49,9 @@ public class DAOWallet implements DAOWalletInterface {
 			
 			//user table insertion
 			DAOWallet.stmt = DAOWallet.dbConnection.prepareStatement(queryUserTable);
-			DAOWallet.stmt.setString(1, acctNo.toString());
+			DAOWallet.stmt.setString(1, acctNo);
 			DAOWallet.stmt.setString(2, acctHolderName);
-			DAOWallet.stmt.setString(3, acctContactNo.toString());
+			DAOWallet.stmt.setString(3, acctContactNo);
 			DAOWallet.stmt.setString(4, acctHolderAddr);
 			int msgUserTable = DAOWallet.stmt.executeUpdate();
 			//System.out.println("Done!");
@@ -224,24 +224,46 @@ public class DAOWallet implements DAOWalletInterface {
 		return null;
 	}
 	
-	public String get(String tableName, String acctNo, String whatToGet)	{
-		String queryToFetch = "select ? from bankwallet.? where acct_no = ?";
+	public String getBalance(String acctNo)	{
+		String queryAmountTable = "select acct_amount from amount_table where acct_no=?";
 		
 		try	{
-			DAOWallet.stmt = DAOWallet.dbConnection.prepareStatement(queryToFetch);
-			DAOWallet.stmt.setString(1, whatToGet);
-			DAOWallet.stmt.setString(2, tableName);
-			DAOWallet.stmt.setString(3, acctNo);
+			DAOWallet.stmt = DAOWallet.dbConnection.prepareStatement(queryAmountTable);
+			DAOWallet.stmt.setString(1, acctNo);
+			
 			ResultSet rs = DAOWallet.stmt.executeQuery();
 			
+			rs.next();
 			String returnIt = rs.getString(1);
-			rs.close();
 			
+			rs.close();
 			return returnIt;
 		}
 		catch(SQLException e)	{
-			System.out.println("[get]\n" + e.getMessage());
+			System.out.println("[getBalance]\n" + e.getMessage());
 		}
 		return null;
 	}
+	
+//	public String get(String tableName, String acctNo, String whatToGet)	{
+//		String queryToFetch = "select ? from ? where acct_no=?";
+//		
+//		try	{
+//			DAOWallet.stmt = DAOWallet.dbConnection.prepareStatement(queryToFetch);
+//			DAOWallet.stmt.setString(1, whatToGet);
+//			DAOWallet.stmt.setString(2, tableName);
+//			DAOWallet.stmt.setString(3, acctNo);
+//			ResultSet rs = DAOWallet.stmt.executeQuery();
+//			
+//			rs.next();
+//			String returnIt = rs.getString(1);
+//			rs.close();
+//			
+//			return returnIt;
+//		}
+//		catch(SQLException e)	{
+//			System.out.println("[get]\n" + e.getMessage());
+//		}
+//		return null;
+//	}
 }

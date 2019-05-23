@@ -11,7 +11,7 @@ public class Main {
 		
 		dw.createConnection("bank_wallet", "root", "");
 		
-		//System.out.println(dw.getLog("", "", "12395481", "D"));
+		System.out.println(dw.get("users_logs", "12395481", "message"));
 	}
 
 }

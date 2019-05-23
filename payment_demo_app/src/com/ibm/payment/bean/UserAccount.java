@@ -1,29 +1,28 @@
 package com.ibm.payment.bean;
 
 public class UserAccount {
-	private long acctNo, acctHolderContact;
-	String acctHolderName, acctHolderAddr;
+	private String acctNo, acctHolderContact, acctHolderName, acctHolderAddr;
 	
-	public UserAccount(long acctNo, String acctHolderName, long acctHolderContact, String acctHolderAddr) {
+	public UserAccount(String acctNo, String acctHolderName, String acctHolderContact, String acctHolderAddr) {
 		this.acctNo = acctNo;
 		this.acctHolderContact = acctHolderContact;
 		this.acctHolderName = acctHolderName;
 		this.acctHolderAddr = acctHolderAddr;
 	}
 	
-	public long getAcctNo() {
+	public String getAcctNo() {
 		return acctNo;
 	}
 	
-	public void setAcctNo(long acctNo) {
+	public void setAcctNo(String acctNo) {
 		this.acctNo = acctNo;
 	}
 	
-	public long getAcctHolderContact() {
+	public String getAcctHolderContact() {
 		return acctHolderContact;
 	}
 	
-	public void setAcctHolderContact(long acctHolderContact) {
+	public void setAcctHolderContact(String acctHolderContact) {
 		this.acctHolderContact = acctHolderContact;
 	}
 	
