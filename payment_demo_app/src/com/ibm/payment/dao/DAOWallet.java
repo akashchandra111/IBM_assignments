@@ -218,6 +218,9 @@ public class DAOWallet implements DAOWalletInterface {
 				else if(type.equals("F") && vals[0].equals("F"))	{
 					passThis += acctNo + " -> " + toAcctNo + " "  + vals[1] + " " + vals[2] + "\n"; 
 				}
+				else	{
+					passThis += acctNo + " -> " + toAcctNo + " "  + vals[1] + " " + vals[2] + "\n"; 
+				}
 			}
 			
 			rs.close();

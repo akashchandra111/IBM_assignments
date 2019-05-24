@@ -137,7 +137,7 @@ public class Main {
 	}
 	
 	public static void userMiniStatement()	{
-		System.out.println("Select Type: \n[1: Deposit]\n[2: Withdrawl]\n[3: Fund Transfer]");
+		System.out.println("Select Type: \n[1: Deposit]\n[2: Withdrawl]\n[3: Fund Transfer]\n[4: All]");
 		if(Main.userExists)	{
 			try	{
 				switch(Integer.parseInt(scan.nextLine()))	{
@@ -149,6 +149,9 @@ public class Main {
 						break;
 					case 3:
 						System.out.println(Main.userWallet.printTransaction("", "", Main.account, "F"));
+						break;
+					case 4:
+						System.out.println(Main.userWallet.printTransaction("", "", Main.account, "A"));	//Works without giving A
 						break;
 					default:
 						System.out.println("Wrong option selected");
@@ -183,7 +186,7 @@ public class Main {
 	public static void checkBalance()	{
 		if (Main.userExists)	{
 			try {
-			System.out.print("Balance is: " + Main.userWallet.getBalance(Main.account));
+			System.out.println("Balance is: " + Main.userWallet.getBalance(Main.account));
 			}
 			catch (WalletProblem e) {
 				System.out.println(e);

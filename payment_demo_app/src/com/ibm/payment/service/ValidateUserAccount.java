@@ -21,7 +21,7 @@ public class ValidateUserAccount {
 	}
 	
 	public static boolean validateMoney(String money)	{
-		Pattern moneyPattern = Pattern.compile("[0-9]{0, 12}");
+		Pattern moneyPattern = Pattern.compile("[0-9]{0,12}");
 		Matcher matchMoneyPattern = moneyPattern.matcher(money);
 		
 		return matchMoneyPattern.matches();
