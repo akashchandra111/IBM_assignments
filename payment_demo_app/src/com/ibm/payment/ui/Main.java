@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import com.ibm.payment.bean.UserAccount;
 import com.ibm.payment.service.ServiceWallet;
+import com.ibm.payment.service.ValidateUserAccount;
 import com.ibm.payment.walletexception.WalletProblem;
 
 public class Main {
@@ -66,13 +67,13 @@ public class Main {
 		System.out.println("================== Wallet Exited ====================");
 	}
 	
-	public static void addUser()	{
+	public static void addUser() throws NumberFormatException	{
 		System.out.print("Enter name: ");
-		String name = scan.nextLine();
+		String name = ValidateUserAccount.getAndValidate("name");
 		System.out.print("Enter mobile number: ");
-		String mNumber = scan.nextLine();
+		String mNumber = ValidateUserAccount.getAndValidate("phone");
 		System.out.print("Enter address: ");
-		String addr = scan.nextLine();
+		String addr = ValidateUserAccount.getAndValidate("address");
 		String acctNo;
 		try {
 			acctNo = userWallet.generateUserAcctNum();
@@ -89,11 +90,11 @@ public class Main {
 		
 	}
 	
-	public static void depositUserMoney()	{
+	public static void depositUserMoney() throws NumberFormatException	{
 		if(Main.userExists)	{
 			System.out.print("How much to deposit: ");
 			try {
-				Main.userWallet.deposit(Main.account, scan.nextLine());
+				Main.userWallet.deposit(Main.account, ValidateUserAccount.getAndValidate("money"));
 			}
 			catch (WalletProblem e) {
 				System.out.println(e);
@@ -103,11 +104,11 @@ public class Main {
 			System.out.println("Change to valid account first!");
 	}
 	
-	public static void withdrawUserMoney()	{
+	public static void withdrawUserMoney() throws NumberFormatException	{
 		if(Main.userExists)	{
 			System.out.print("How much to withdraw: ");
 			try {
-				Main.userWallet.withdraw(Main.account, scan.nextLine());
+				Main.userWallet.withdraw(Main.account, ValidateUserAccount.getAndValidate("money"));
 			}
 			catch (WalletProblem e) {
 				System.out.println(e);
@@ -117,12 +118,12 @@ public class Main {
 			System.out.println("Change to valid account first!");
 	}
 	
-	public static void fundTransferUserMoney()	{
+	public static void fundTransferUserMoney() throws NumberFormatException	{
 		if (Main.userExists)	{
 			System.out.print("Enter benificiary account number: ");
-			String benificiaryAcctNo = scan.nextLine();
+			String benificiaryAcctNo = ValidateUserAccount.getAndValidate("acct_no");
 			System.out.println("Enter amount: ");
-			String amount = scan.nextLine();
+			String amount = ValidateUserAccount.getAndValidate("money");
 		
 			try {
 				Main.userWallet.fundTransfer(Main.account, benificiaryAcctNo, amount);
@@ -161,9 +162,9 @@ public class Main {
 			System.out.println("Change to valid account first!");
 	}
 	
-	public static void changeUser()	{
+	public static void changeUser() throws NumberFormatException	{
 		System.out.println("Enter id: ");
-		Main.account = new UserAccount(Main.scan.nextLine(), null, null, null);
+		Main.account = new UserAccount(ValidateUserAccount.getAndValidate("acct_no"), null, null, null);
 		
 		try {
 			if(Main.userWallet.checkUser(Main.account))	{
