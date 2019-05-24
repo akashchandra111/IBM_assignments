@@ -1,7 +1,7 @@
 package com.ibm.payment.service;
 
-import com.ibm.payment.WalletException.WalletProblem;
 import com.ibm.payment.bean.UserAccount;
+import com.ibm.payment.walletexception.WalletProblem;
 
 public interface ServiceWalletInterface {
 	public abstract void createAccount(UserAccount account) throws WalletProblem;

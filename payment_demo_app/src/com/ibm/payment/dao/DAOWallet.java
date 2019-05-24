@@ -9,8 +9,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.TimeZone;
 
-import com.ibm.payment.WalletException.WalletProblem;
 import com.ibm.payment.bean.UserAccount;
+import com.ibm.payment.walletexception.WalletProblem;
 
 public class DAOWallet implements DAOWalletInterface {
 	

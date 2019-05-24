@@ -2,9 +2,9 @@ package com.ibm.payment.ui;
 
 import java.util.Scanner;
 
-import com.ibm.payment.WalletException.WalletProblem;
 import com.ibm.payment.bean.UserAccount;
 import com.ibm.payment.service.ServiceWallet;
+import com.ibm.payment.walletexception.WalletProblem;
 
 public class Main {
 	
@@ -16,7 +16,7 @@ public class Main {
 	static	{
 		scan = new Scanner(System.in);
 		userWallet = new ServiceWallet();
-		account = new UserAccount(null, null, null, null);
+		account = null;
 	}
 
 	public static void main(String[] args) {
@@ -24,7 +24,7 @@ public class Main {
 		boolean errorOccured = false;
 		
 		do	{
-			System.out.println("[1: Open Account]\n[2: Deposit Money]\n[3: WithDraw Money]\n[4: Fund Transfer]\n[5: Mini Statement]\n[6: Change User]\n[7: Exit]");
+			System.out.println("[1: Open Account]\n[2: Deposit Money]\n[3: WithDraw Money]\n[4: Fund Transfer]\n[5: Mini Statement]\n[6: Change User]\n[7: Balance]\n[8: Exit]");
 			try	{
 				errorOccured = true;
 				switch(Integer.parseInt(scan.nextLine()))	{
@@ -47,6 +47,9 @@ public class Main {
 						Main.changeUser();
 						break;
 					case 7:
+						Main.checkBalance();
+						break;
+					case 8:
 						errorOccured = false;
 						break;
 					default:
@@ -60,6 +63,7 @@ public class Main {
 		}
 		while(errorOccured == true);
 		Main.scan.close();
+		System.out.println("================== Wallet Exited ====================");
 	}
 	
 	public static void addUser()	{
@@ -72,11 +76,13 @@ public class Main {
 		String acctNo;
 		try {
 			acctNo = userWallet.generateUserAcctNum();
+			//System.out.println(acctNo);
 			Main.account = new UserAccount(acctNo, name, mNumber, addr);
 			Main.userExists = true;
 			Main.userWallet.createAccount(Main.account);
 		}
 		catch (WalletProblem e) {
+			System.out.println("Account number might already be present try again!");
 			System.out.println(e);
 		}
 		
@@ -171,6 +177,19 @@ public class Main {
 		} catch (WalletProblem e) {
 			System.out.println(e);
 		}
+	}
+	
+	public static void checkBalance()	{
+		if (Main.userExists)	{
+			try {
+			System.out.print("Balance is: " + Main.userWallet.getBalance(Main.account));
+			}
+			catch (WalletProblem e) {
+				System.out.println(e);
+			}
+		}
+		else
+			System.out.println("Change to valid account first!");
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.ibm.payment.WalletException;
+package com.ibm.payment.walletexception;
 
 public class WalletProblem extends Exception{
 

@@ -1,7 +1,7 @@
 package com.ibm.payment.dao;
 
-import com.ibm.payment.WalletException.WalletProblem;
 import com.ibm.payment.bean.UserAccount;
+import com.ibm.payment.walletexception.WalletProblem;
 
 public interface DAOWalletInterface {
 	public abstract void createAccountToDb(UserAccount account) throws WalletProblem;
