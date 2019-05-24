@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.TimeZone;
 
+import com.ibm.payment.WalletException.WalletProblem;
 import com.ibm.payment.bean.UserAccount;
 
 public class DAOWallet implements DAOWalletInterface {
@@ -18,7 +19,7 @@ public class DAOWallet implements DAOWalletInterface {
 	
 	private static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 	
-	public void createConnection(String dbName, String userName, String password)	{
+	public void createConnection(String dbName, String userName, String password) throws WalletProblem	{
 		
 		try	{
 			String timeZoneCorrection = "?serverTimezone=" + TimeZone.getDefault().getID();
@@ -30,12 +31,13 @@ public class DAOWallet implements DAOWalletInterface {
 		}
 		catch(ClassNotFoundException | SQLException e)	{
 			System.out.println("[createConnection]\n" + e.getMessage());
+			throw new WalletProblem("Connection is not created correctly!");
 		}
 		
 	}
 
 	@Override
-	public void createAccountToDb(UserAccount account)	{
+	public void createAccountToDb(UserAccount account) throws WalletProblem	{
 		String acctNo = account.getAcctNo();
 		String acctHolderName = account.getAcctHolderName();
 		String acctContactNo = account.getAcctHolderContact();
@@ -79,11 +81,12 @@ public class DAOWallet implements DAOWalletInterface {
 		}
 		catch(SQLException e)	{
 			System.out.println("[createAccountToDb]\n" + e.getMessage());
+			throw new WalletProblem("Account is not created properly!");
 		}
 	}
 
 	@Override
-	public long fetchAmount(String accountNo) {
+	public long fetchAmount(String accountNo) throws WalletProblem	{
 		String queryAmountTable = "select acct_amount from amount_table where acct_no='" + accountNo + "'";
 		
 		//fetching amount from amount table
@@ -101,12 +104,12 @@ public class DAOWallet implements DAOWalletInterface {
 		}
 		catch (SQLException e) {
 			System.out.println("[fetchAmount]\n" + e.getMessage());
+			throw new WalletProblem("Amount can't be fetched!");
 		}
-		return 0L;
 	}
 
 	@Override
-	public void deposit(String toAccountNo, String fromAccountNo, String amount) {
+	public void deposit(String toAccountNo, String fromAccountNo, String amount) throws WalletProblem {
 		String queryAmountTable = "update amount_table set acct_amount=acct_amount+? where acct_no=?";
 		String queryUserLogTable = "insert into users_logs values(?, ?, ?)";
 		
@@ -130,11 +133,12 @@ public class DAOWallet implements DAOWalletInterface {
 		}
 		catch(SQLException e)	{
 			System.out.println("[deposit]\n" + e.getMessage());
+			throw new WalletProblem("Deposit was not successful");
 		}
 	}
 
 	@Override
-	public void withdraw(String fromAccountNo, String toAccountNo, String amount) {
+	public void withdraw(String fromAccountNo, String toAccountNo, String amount) throws WalletProblem {
 		String queryAmountTable = "update amount_table set acct_amount=acct_amount-? where acct_no=?";
 		String queryUserLogTable = "insert into users_logs values(?, ?, ?)";
 		
@@ -161,7 +165,7 @@ public class DAOWallet implements DAOWalletInterface {
 	}
 
 	@Override
-	public void fundTransfer(String fromAccountNo, String toAccountNo, String amount) {
+	public void fundTransfer(String fromAccountNo, String toAccountNo, String amount) throws WalletProblem {
 		new DAOWallet().withdraw(fromAccountNo, toAccountNo, amount);
 		new DAOWallet().deposit(toAccountNo, fromAccountNo, amount);
 		
@@ -181,11 +185,12 @@ public class DAOWallet implements DAOWalletInterface {
 		}
 		catch(SQLException e)	{
 			System.out.println("[fundTransfer]\n" + e.getMessage());
+			throw new WalletProblem("Withdrawl was not successful!");
 		}
 	}
 
 	@Override
-	public String getLog(String fromDate, String toDate, String userAcctNo, String type) {
+	public String getLog(String fromDate, String toDate, String userAcctNo, String type) throws WalletProblem {
 		String queryUserLogTable = "select * from users_logs where acct_no=?";
 		
 		try	{
@@ -220,11 +225,11 @@ public class DAOWallet implements DAOWalletInterface {
 		}
 		catch(SQLException e)	{
 			System.out.println("[getLog]\n" + e.getMessage());
+			throw new WalletProblem("Problems while fetching mini statement!");
 		}
-		return null;
 	}
 	
-	public String getBalance(String acctNo)	{
+	public String getBalance(String acctNo) throws WalletProblem	{
 		String queryAmountTable = "select acct_amount from amount_table where acct_no=?";
 		
 		try	{
@@ -241,11 +246,11 @@ public class DAOWallet implements DAOWalletInterface {
 		}
 		catch(SQLException e)	{
 			System.out.println("[getBalance]\n" + e.getMessage());
+			throw new WalletProblem("Error while fetching balance!");
 		}
-		return null;
 	}
 	
-	public boolean isAccountPresent(String acctNo)	{
+	public boolean isAccountPresent(String acctNo) throws WalletProblem	{
 		String queryAmountTable = "select acct_amount from amount_table where acct_no=?";
 		
 		try	{
@@ -263,11 +268,11 @@ public class DAOWallet implements DAOWalletInterface {
 		}
 		catch(SQLException e)	{
 			System.out.println("[getBalance]\n" + e.getMessage());
+			throw new WalletProblem("Problem while checking the account!");
 		}
-		return false;
 	}
 	
-//	public String get(String tableName, String acctNo, String whatToGet)	{
+//	public String get(String tableName, String acctNo, String whatToGet) throws WalletProblem	{
 //		String queryToFetch = "select ? from ? where acct_no=?";
 //		
 //		try	{
@@ -285,7 +290,7 @@ public class DAOWallet implements DAOWalletInterface {
 //		}
 //		catch(SQLException e)	{
 //			System.out.println("[get]\n" + e.getMessage());
+//			throw new WalletProblem("Cannot get: " + whatToGet + "!");
 //		}
-//		return null;
 //	}
 }

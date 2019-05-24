@@ -2,6 +2,7 @@ package com.ibm.payment.ui;
 
 import java.util.Scanner;
 
+import com.ibm.payment.WalletException.WalletProblem;
 import com.ibm.payment.bean.UserAccount;
 import com.ibm.payment.service.ServiceWallet;
 
@@ -68,17 +69,29 @@ public class Main {
 		String mNumber = scan.nextLine();
 		System.out.print("Enter address: ");
 		String addr = scan.nextLine();
-		String acctNo = userWallet.generateUserAcctNum();
+		String acctNo;
+		try {
+			acctNo = userWallet.generateUserAcctNum();
+			Main.account = new UserAccount(acctNo, name, mNumber, addr);
+			Main.userExists = true;
+			Main.userWallet.createAccount(Main.account);
+		}
+		catch (WalletProblem e) {
+			System.out.println(e);
+		}
 		
-		Main.account = new UserAccount(acctNo, name, mNumber, addr);
-		Main.userExists = true;
-		Main.userWallet.createAccount(Main.account);
+		
 	}
 	
 	public static void depositUserMoney()	{
 		if(Main.userExists)	{
 			System.out.print("How much to deposit: ");
-			Main.userWallet.deposit(Main.account, scan.nextLine());
+			try {
+				Main.userWallet.deposit(Main.account, scan.nextLine());
+			}
+			catch (WalletProblem e) {
+				System.out.println(e);
+			}
 		}
 		else
 			System.out.println("Change to valid account first!");
@@ -87,7 +100,12 @@ public class Main {
 	public static void withdrawUserMoney()	{
 		if(Main.userExists)	{
 			System.out.print("How much to withdraw: ");
-			Main.userWallet.withdraw(Main.account, scan.nextLine());
+			try {
+				Main.userWallet.withdraw(Main.account, scan.nextLine());
+			}
+			catch (WalletProblem e) {
+				System.out.println(e);
+			}
 		}
 		else
 			System.out.println("Change to valid account first!");
@@ -100,7 +118,12 @@ public class Main {
 			System.out.println("Enter amount: ");
 			String amount = scan.nextLine();
 		
-			Main.userWallet.fundTransfer(Main.account, benificiaryAcctNo, amount);
+			try {
+				Main.userWallet.fundTransfer(Main.account, benificiaryAcctNo, amount);
+			}
+			catch (WalletProblem e) {
+				System.out.println(e);
+			}
 		}
 		else
 			System.out.println("Change to valid account first!");
@@ -109,18 +132,23 @@ public class Main {
 	public static void userMiniStatement()	{
 		System.out.println("Select Type: \n[1: Deposit]\n[2: Withdrawl]\n[3: Fund Transfer]");
 		if(Main.userExists)	{
-			switch(Integer.parseInt(scan.nextLine()))	{
-				case 1:
-					System.out.println(Main.userWallet.printTransaction("", "", Main.account, "D"));
-					break;
-				case 2:
-					System.out.println(Main.userWallet.printTransaction("", "", Main.account, "W"));
-					break;
-				case 3:
-					System.out.println(Main.userWallet.printTransaction("", "", Main.account, "F"));
-					break;
-				default:
-					System.out.println("Wrong option selected");
+			try	{
+				switch(Integer.parseInt(scan.nextLine()))	{
+					case 1:
+						System.out.println(Main.userWallet.printTransaction("", "", Main.account, "D"));
+						break;
+					case 2:
+						System.out.println(Main.userWallet.printTransaction("", "", Main.account, "W"));
+						break;
+					case 3:
+						System.out.println(Main.userWallet.printTransaction("", "", Main.account, "F"));
+						break;
+					default:
+						System.out.println("Wrong option selected");
+				}
+			}
+			catch(WalletProblem e)	{
+				System.out.println(e);
 			}
 		}
 		else
@@ -131,13 +159,17 @@ public class Main {
 		System.out.println("Enter id: ");
 		Main.account = new UserAccount(Main.scan.nextLine(), null, null, null);
 		
-		if(Main.userWallet.checkUser(Main.account))	{
-			System.out.println("User account exists, selecting as current user!");
-			Main.userExists = true;
-		}
-		else	{
-			System.out.println("User account doesn't exist, try creating it before using it!");
-			Main.userExists = false;
+		try {
+			if(Main.userWallet.checkUser(Main.account))	{
+				System.out.println("User account exists, selecting as current user!");
+				Main.userExists = true;
+			}
+			else	{
+				System.out.println("User account doesn't exist, try creating it before using it!");
+				Main.userExists = false;
+			}
+		} catch (WalletProblem e) {
+			System.out.println(e);
 		}
 	}
 
