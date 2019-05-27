@@ -54,6 +54,7 @@ public class Main {
 						errorOccured = false;
 						break;
 					default:
+						//System.out.println("Got: " + );
 						System.out.println("Wrong option, try again!");
 				}
 			}

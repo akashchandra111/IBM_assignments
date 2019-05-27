@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.TimeZone;
@@ -275,25 +276,22 @@ public class DAOWallet implements DAOWalletInterface {
 		}
 	}
 	
-//	public String get(String tableName, String acctNo, String whatToGet) throws WalletProblem	{
-//		String queryToFetch = "select ? from ? where acct_no=?";
-//		
-//		try	{
-//			DAOWallet.stmt = DAOWallet.dbConnection.prepareStatement(queryToFetch);
-//			DAOWallet.stmt.setString(1, whatToGet);
-//			DAOWallet.stmt.setString(2, tableName);
-//			DAOWallet.stmt.setString(3, acctNo);
-//			ResultSet rs = DAOWallet.stmt.executeQuery();
-//			
-//			rs.next();
-//			String returnIt = rs.getString(1);
-//			rs.close();
-//			
-//			return returnIt;
-//		}
-//		catch(SQLException e)	{
-//			System.out.println("[get]\n" + e.getMessage());
-//			throw new WalletProblem("Cannot get: " + whatToGet + "!");
-//		}
-//	}
+	public String get(String tableName, String acctNo, String whatToGet) throws WalletProblem	{
+		String queryToFetch = "select " + whatToGet + " from " + acctNo + " where acct_no='" + acctNo + "'";
+		
+		try	{
+			Statement stmt = DAOWallet.dbConnection.createStatement();
+			ResultSet rs = stmt.executeQuery(queryToFetch);
+			
+			rs.next();
+			String returnIt = rs.getString(1);
+			rs.close();
+			
+			return returnIt;
+		}
+		catch(SQLException e)	{
+			System.out.println("[get]\n" + e.getMessage());
+			throw new WalletProblem("Cannot get: " + whatToGet + "!");
+		}
+	}
 }

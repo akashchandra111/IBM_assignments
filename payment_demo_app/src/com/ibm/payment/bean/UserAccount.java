@@ -10,6 +10,10 @@ public class UserAccount {
 		this.acctHolderAddr = acctHolderAddr;
 	}
 	
+	public UserAccount() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getAcctNo() {
 		return acctNo;
 	}
