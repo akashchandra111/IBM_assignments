@@ -24,6 +24,10 @@ public class ProductService implements IProductService	{
 		return ProductService.accessObject.setDetails(productToEnlist);
 	}
 	
+	public boolean verifyProductId(Integer productCode) throws NullException	{
+		return ProductService.accessObject.getId(productCode) != null;
+	}
+	
 	//returns string with a specific product details
 	public String returnString(Integer productId) throws NullException	{
 		String returnThis = "";

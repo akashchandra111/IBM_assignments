@@ -5,6 +5,7 @@ import java.util.Scanner;
 import com.ibm.takehome.service.ProductService;
 import com.ibm.takehome.util.CollectionUtil;
 import com.ibm.takhome.problem.NullException;
+import com.ibm.takhome.problem.NumberException;
 
 public class UI {
 	private static CollectionUtil util;
@@ -44,7 +45,7 @@ public class UI {
 					System.out.println("You entered wrong input!, try again");				
 				}
 			}
-			catch(NumberFormatException nfe)	{
+			catch(NumberException nfe)	{
 				System.out.println(nfe);
 				errorOccured = true;
 			}
@@ -57,6 +58,11 @@ public class UI {
 	public static void generateBill() throws NullException	{
 		System.out.println("Enter Product Code: ");
 		Integer productCode = Integer.parseInt(scan.nextLine());
+		
+		if(UI.service.verifyProductId(productCode));
+		else {
+			throw new NullException("User Id is not present");
+		}
 		
 		System.out.println("Enter Product Quantity: ");
 		Integer productQuantity = Integer.parseInt(scan.nextLine());
