@@ -20,12 +20,8 @@ class WalletUnitTestCases {
 		account = new UserAccount();
 		anotherAccount = new UserAccount();
 		wallet = new ServiceWallet();
-	}
-	
-	//UserAccount Tests
-	@Test
-	void userAccountTests()	{
 		
+		//User data generation
 		account.setAcctHolderName("Akash Chandra");
 		account.setAcctNo("12395481");
 		account.setAcctHolderContact("8979583828");
@@ -34,8 +30,12 @@ class WalletUnitTestCases {
 		anotherAccount.setAcctHolderName("Akash Chandra");
 		anotherAccount.setAcctNo("12394345");
 		anotherAccount.setAcctHolderContact("8979583828");
-		anotherAccount.setAcctHolderAddr("bangalore");
-		
+		anotherAccount.setAcctHolderAddr("bangalore");	
+	}
+	
+	//UserAccount Tests
+	@Test
+	void userAccountTests()	{
 		assertAll(
 			() -> assertEquals("Akash Chandra", account.getAcctHolderName(), "fails!"),
 			() -> assertEquals("12395481", account.getAcctNo(), "fails!"),
