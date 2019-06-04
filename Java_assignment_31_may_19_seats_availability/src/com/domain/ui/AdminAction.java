@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.domain.bean.Subject;
 import com.domain.service.DatabaseService;
 
-@WebServlet(urlPatterns= {"/admin_action_add", "/admin_action_update", "/admin_action_remove"})
+@WebServlet(urlPatterns= {"/admin_action", "/admin_action_add", "/admin_action_update", "/admin_action_remove"})
 public class AdminAction extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -21,26 +21,26 @@ public class AdminAction extends HttpServlet {
 		
 		System.out.println("courseId: " + courseId + " courseName: " + courseName + " courseSeats: " + courseSeats);
 		
-		if(courseId==null || courseName==null || courseSeats==null)	{
+		if(courseId==null && courseName==null && courseSeats==null)	{
 			response.sendRedirect("admin");
 		}
 		else	{
-			//Addition of new course
-			if((!courseId.equals("")) && (!courseName.equals("")) && (!courseSeats.equals("")))	{
-				new DatabaseService().setSubject(new Subject(courseId, courseName, courseSeats));
-				response.getWriter().println("New Course Added!");
+			//Removal of course
+			if((!courseId.equals("")) && (courseName == null) && (courseSeats == null))	{
+				new DatabaseService().removeSubject(courseId);
+				response.getWriter().println("Course Removed!");
 				request.getRequestDispatcher("admin").include(request, response);
 			}
 			//Updation of available seats
-			else if((!courseId.equals("")) && (!courseName.equals("")) && (courseSeats.equals("")))	{
+			else if((!courseId.equals("")) && (courseName == null) && (!courseSeats.equals("")))	{
 				new DatabaseService().setAvailableSeats(courseId, courseSeats);
 				response.getWriter().println("Course Seats Added!");
 				request.getRequestDispatcher("admin").include(request, response);
 			}
-			//Removal of course
-			else if((!courseId.equals("")) && (courseName.equals("")) && (courseSeats.equals("")))	{
-				new DatabaseService().removeSubject(courseId);
-				response.getWriter().println("Course Removed!");
+			//Addition of new course
+			else if((!courseId.equals("")) && (!courseName.equals("")) && (!courseSeats.equals("")))	{
+				new DatabaseService().setSubject(new Subject(courseId, courseName, courseSeats));
+				response.getWriter().println("New Course Added!");
 				request.getRequestDispatcher("admin").include(request, response);
 			}
 			else	{

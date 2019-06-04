@@ -24,7 +24,7 @@ public class Admin extends HttpServlet {
 		out.println("Course Id: <input type='text' name='courseid'>");
 		out.println("Course Name: <input type='text' name='coursename'>");
 		out.println("Course Seats: <input type='text' name='courseseats'>");
-		out.println("<input type='submit' value='Add Training'");
+		out.println("<input type='submit' value='Add Training'>");
 		out.println("</form><br>");
 		
 //		Add Update Seats Form
@@ -32,14 +32,14 @@ public class Admin extends HttpServlet {
 		out.println("<form action='admin_action_update' method='post'>");
 		out.println("Course Id: <input type='text' name='courseid'>");
 		out.println("Course Seats: <input type='text' name='courseseats'>");
-		out.println("<input type='submit' value='Update Seats'");
+		out.println("<input type='submit' value='Update Seats'>");
 		out.println("</form><br>");
 		
 //		Delete Training Form
 		out.println("Delete Training<br>");
 		out.println("<form action='admin_action_remove' method='post'>");
 		out.println("Course Id: <input type='text' name='courseid'>");
-		out.println("<input type='submit' value='Delete Training'");
+		out.println("<input type='submit' value='Delete Training'>");
 		out.println("</form><br>");
 	}
 
