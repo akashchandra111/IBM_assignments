@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd"
+    default-init-method="initializeAll" default-destroy-method="destroyAll">
+    <!-- Only one object of a bean is created through it's lifecycle -->
+    <!-- Load the properties file -->
+    <context:property-placeholder location="classpath:laptops.properties"/>
+    
+	<bean class="com.ibm.training.controller.LaptopHolderController" name="LaptopHolder">
+		<constructor-arg>
+			<list>
+				<ref bean="Dell"/>
+				<ref bean="Lenovo"/>
+				<ref bean="Acer"/>
+				<ref bean="HP"/>
+				<ref bean="Compaq"/>
+			</list>
+		</constructor-arg>
+	</bean>
+	
+	<bean class="com.ibm.training.bean.Laptop" name="Dell" id="Dell">
+		<constructor-arg index="0" value="${laptop1.id}"/>
+		<constructor-arg index="1" value="${laptop1.hdd}"/>	
+		<constructor-arg index="2" value="${laptop1.ram}"/>	
+		<constructor-arg index="3" value="${laptop1.graphics}"/>	
+		<constructor-arg index="4" value="${laptop1.name}"/>	
+	</bean>
+	<bean class="com.ibm.training.bean.Laptop" name="Lenovo" id="Lenovo">
+		<constructor-arg index="0" value="${laptop2.id}"/>	
+		<constructor-arg index="1" value="${laptop2.hdd}"/>	
+		<constructor-arg index="2" value="${laptop2.ram}"/>	
+		<constructor-arg index="3" value="${laptop2.graphics}"/>	
+		<constructor-arg index="4" value="${laptop2.name}"/>	
+	</bean>
+	<bean class="com.ibm.training.bean.Laptop" name="Acer" id="Acer">
+		<constructor-arg index="0" value="${laptop3.id}"/>	
+		<constructor-arg index="1" value="${laptop3.hdd}"/>	
+		<constructor-arg index="2" value="${laptop3.ram}"/>	
+		<constructor-arg index="3" value="${laptop3.graphics}"/>	
+		<constructor-arg index="4" value="${laptop3.name}"/>	
+	</bean>
+	<bean class="com.ibm.training.bean.Laptop" name="HP" id="HP">
+		<constructor-arg index="0" value="${laptop4.id}"/>	
+		<constructor-arg index="1" value="${laptop4.hdd}"/>	
+		<constructor-arg index="2" value="${laptop4.ram}"/>	
+		<constructor-arg index="3" value="${laptop4.graphics}"/>	
+		<constructor-arg index="4" value="${laptop4.name}"/>	
+	</bean>
+	<bean class="com.ibm.training.bean.Laptop" name="Compaq" id="Compaq">
+		<constructor-arg index="0" value="${laptop5.id}"/>	
+		<constructor-arg index="1" value="${laptop5.hdd}"/>	
+		<constructor-arg index="2" value="${laptop5.ram}"/>	
+		<constructor-arg index="3" value="${laptop5.graphics}"/>	
+		<constructor-arg index="4" value="${laptop5.name}"/>	
+	</bean>
+</beans>
